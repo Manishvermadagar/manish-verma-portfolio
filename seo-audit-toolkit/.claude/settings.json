@@ -1,0 +1,27 @@
+{
+  "$comment": "Two guards. Both force a manual approval prompt even when the session is running in bypass-permissions mode. Copy this file as-is; it needs no per-project editing.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "$comment": "Outbound-mail gate. Any tool that can put a message in front of a real recipient requires an explicit human yes, per message. Widen this matcher if you wire in a different mail server — match on the server prefix, not on a memorised tool list.",
+        "matcher": "mcp__gmail__send_email|mcp__gmail__send_draft|mcp__gmail__reply_all|mcp__gmail__batch_delete_emails|mcp__gmail__batch_modify_emails|mcp__gmail__report_phishing|.*__send_.*mail.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"ask\",\"permissionDecisionReason\":\"Outgoing communication — must be manually approved before sending, even in bypass-permissions mode.\"}}'"
+          }
+        ]
+      },
+      {
+        "$comment": "Destructive-shell gate. Requires jq on PATH.",
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.claude/hooks/destructive-bash-guard.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}

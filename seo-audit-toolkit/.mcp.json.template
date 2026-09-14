@@ -1,0 +1,24 @@
+{
+  "$comment": "Copy this file to .mcp.json before you use it. It is shipped as .template on purpose: Claude Code auto-detects .mcp.json on first open and offers to start every server in it, and you should read a server list before you run it. Nothing here is site-specific — see docs/SETUP.md for how to authenticate each one.",
+  "mcpServers": {
+    "gsc": {
+      "$comment": "Google Search Console. Community server (AminForou/mcp-gsc, MIT), read-only. GSC_OAUTH_CLIENT_SECRETS_FILE must point at YOUR OWN Google OAuth desktop-client JSON — you create it in your own Google Cloud project, docs/SETUP.md step 2. Export the variable in your shell profile, not just the current shell.",
+      "command": "uvx",
+      "args": ["mcp-gsc"],
+      "env": {
+        "GSC_OAUTH_CLIENT_SECRETS_FILE": "${GSC_OAUTH_CLIENT_SECRETS_FILE}"
+      }
+    },
+    "analytics-mcp": {
+      "$comment": "Google Analytics 4. Official server (googleanalytics/google-analytics-mcp), read-only. No env vars: it authenticates through Application Default Credentials, which you create with gcloud — docs/SETUP.md step 3. Install it first with: pipx install analytics-mcp",
+      "command": "analytics-mcp",
+      "args": []
+    },
+    "gmail": {
+      "$comment": "Gmail, for drafting stakeholder mail and reading the delivered copy back to confirm it rendered. Optional — delete this block if you are not sending mail from the project. Confirm the package name for whichever Gmail MCP distribution you install and update the command to match; the only requirement is that `claude mcp list` shows it Connected. Sends are gated by the PreToolUse hook in .claude/settings.json and always require manual approval."
+      ,
+      "command": "npx",
+      "args": ["-y", "@gongrzhe/server-gmail-autoauth-mcp"]
+    }
+  }
+}

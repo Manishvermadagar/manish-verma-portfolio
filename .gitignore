@@ -1,0 +1,31 @@
+# Data exports — never commit client, employer or analytics data
+*.csv
+*.xlsx
+*.xls
+*.tsv
+*.json.gz
+data/
+exports/
+raw/
+
+# Credentials
+.env
+.env.*
+*.pem
+*.key
+credentials*.json
+client_secret*.json
+token*.json
+.secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

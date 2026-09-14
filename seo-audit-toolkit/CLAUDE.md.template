@@ -1,0 +1,141 @@
+# [PROJECT NAME] — Project Context
+
+Copy this file to `CLAUDE.md` in your project root and fill in every `[PLACEHOLDER]`.
+It loads at the start of every Claude Code session in the repo. Treat it as ground truth,
+and update it whenever a fact in it stops being true.
+
+---
+
+## FIRST-RUN GATE — check this before doing anything else
+
+**If setup has not been completed on this machine, stop and do that first.**
+
+Setup is not decoration. Without it, every data-backed task in this repo returns nothing,
+silently. A session that skips setup produces confident analysis built on no data at all,
+and there is no error message to warn you.
+
+Self-check at the start of a session when unsure:
+
+```bash
+# 1. Dependencies present?
+[YOUR DEPENDENCY CHECK COMMAND]
+
+# 2. Data connections live?
+[YOUR CONNECTION LIST COMMAND]
+```
+
+**Verify each connection with a live query, not with a success message.** An
+authentication step that reports success and a data source that actually returns rows are
+different things. Run one real query against each source and confirm rows come back. If
+any source is missing or empty, fixing that is the task, ahead of everything else.
+
+Access grants to confirm before starting:
+
+- [ ] [SEARCH CONSOLE PROPERTY] — verified access for the account in use
+- [ ] [ANALYTICS PROPERTY] — read access
+- [ ] [ANY OTHER SOURCE]
+
+Without these, setup completes and every query returns empty.
+
+---
+
+## Don't wait to be told what to do
+
+When a session starts and no specific instruction has been given, do not sit idle and do
+not ask an open "what would you like to do?". Orient, then propose. In order:
+
+1. Confirm setup is complete. If it is not, that is the task.
+2. Read the backlog file — the live, priority-ordered list of outstanding work.
+3. Check the working directory for anything half-finished: a draft with no verdict, a
+   report with no QA pass, an analysis that was started and abandoned.
+4. Propose the top one to three concrete next actions, and recommend one.
+
+The failure this prevents: a session that opens, greets, and waits, when the backlog, the
+half-finished work, and the data needed to prioritize are all sitting in the repo.
+
+---
+
+## What this project is
+
+[ONE PARAGRAPH: what the site is, what it does, who it serves.]
+
+**Site:** [DOMAIN]
+**Markets:** [e.g. UK at `/`, US at `/us`] — with the URL structure for each
+**Primary conversion:** [what a successful visit results in]
+
+## Data sources
+
+| Source | What it covers | Access status |
+|---|---|---|
+| [Search Console] | [property, date range available] | [ ] verified |
+| [Analytics] | [property, date range available] | [ ] verified |
+| [Crawler / backlink tool] | [what is exported and how often] | [ ] verified |
+| [CMS export] | [page count, last refreshed] | [ ] verified |
+
+Reference data folders are inputs. Read them; do not write into them. All new output goes
+in the working directory.
+
+---
+
+## Working style — non-negotiables
+
+1. **This repo is the system of record.** Every finding, data pull, report, and piece of
+   stakeholder communication is tracked here. Not in a downloads folder, not in a chat
+   thread, not only in someone's inbox. A file that lands outside gets moved in.
+
+2. **Nothing goes loose at the root.** Every new file has a designated home at the moment
+   it is created. If nothing fits, extend the structure deliberately rather than dropping
+   it at root "for now".
+
+3. **One running log per channel, never per-task files.** One section per item, newest
+   first. Scattered per-task files are how a project loses its own history.
+
+4. **Verify before you assert.** Any claim of the form "X was done", "X is pending", or "X
+   is missing" is checked against an actual source — the CMS, the live page, the analytics
+   platform, the tracker — never asserted from memory or carried over from last month's
+   wording. This is the single most common way a report becomes wrong.
+
+5. **Nothing ships without a review pass** against `DELIVERY_QUALITY_LEDGER.md`, done in
+   writing. The deliverable is not finished until the ledger is updated with anything the
+   review found.
+
+6. **Never auto-send anything external.** Every outgoing message is presented in full and
+   approved individually. A general go-ahead does not count.
+
+7. **Regenerate, do not hand-patch.** Rendered outputs are built from their markdown
+   source. Edit the source and re-render.
+
+---
+
+## Standing facts
+
+Established findings that inform every decision. Check them before proposing work. Update
+this list when new data contradicts one, and date-stamp each entry so its age is visible.
+
+**Indexing and crawl**
+- [FINDING] — [date verified]
+
+**Content and discovery**
+- [FINDING] — [date verified]
+
+**Authority and competition**
+- [FINDING] — [date verified]
+
+Anything in this section older than one working cycle gets re-verified before it is relied
+on.
+
+---
+
+## Model and effort guidance
+
+Output from this repo can reach a live site, so this matters.
+
+| Task type | Use |
+|---|---|
+| Routine — drafts, doc edits, file organization, lookups | Faster model, medium effort |
+| Analytical — page audits, keyword analysis, report QA | Faster model, high effort |
+| High-stakes — anything a stakeholder reads | Strongest model, high effort |
+| Live-impacting — robots directives, redirects, canonicals, structured data, any deployed change | Strongest model, high effort |
+
+Rule of thumb: if a mistake would be seen by a stakeholder or go live on the site, use the
+strongest model available.

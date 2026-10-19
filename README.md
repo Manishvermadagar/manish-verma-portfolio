@@ -107,6 +107,7 @@ operation is not under control merely because its tools say everything worked.
 | [`evidence-discipline/`](evidence-discipline/) | The quality system underneath the analysis work: a 17-pattern ledger, a tracked verification loop, and the rules for writing findings someone will act on. |
 | [`how-i-work-with-ai/`](how-i-work-with-ai/) | A short essay on the working method. |
 | [`BY_THE_NUMBERS.md`](BY_THE_NUMBERS.md) | The figures behind all of it, with charts. |
+| [career-contribution-report.pdf](career-contribution-report.pdf) | Career contribution report. |
 
 ---
 
